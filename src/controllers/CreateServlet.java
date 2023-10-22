@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Tasks;
 import utils.DBUtil;
 
 /**
@@ -41,8 +42,8 @@ public class CreateServlet extends HttpServlet {
             // エンティティマネジャーのトランザクションオブジェクトを取得し、トランザクションを開始
             em.getTransaction().begin();
 
-            // Messageクラスのインスタンスを作成し、変数mに代入
-            Message m = new Message();
+            // Tasksクラスのインスタンスを作成し、変数mに代入
+            Tasks t = new Tasks();
 
             // 各フィールドにデータを代入
 
@@ -50,20 +51,20 @@ public class CreateServlet extends HttpServlet {
             // contentには、リクエストパラメータcontentの値が格納されている
             String content = request.getParameter("content");
 
-            // Messageクラスのインスタンスmのbodyフィールドに文字列contentをセット
-            m.setContent(content);
+            // Tasksクラスのインスタンスtのbodyフィールドに文字列contentをセット
+            t.setContent(content);
 
             // 現在のタイムスタンプを取得
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
-            // MessageクラスのインスタンスmのCreated_at及びUpdated_atフィールドにタイムスタンプcurrentTimeを設定
-            m.setCreated_at(currentTime);
-            m.setUpdated_at(currentTime);
+            // TasksクラスのインスタンスtのCreated_at及びUpdated_atフィールドにタイムスタンプcurrentTimeを設定
+            t.setCreated_at(currentTime);
+            t.setUpdated_at(currentTime);
 
-            // Messageクラスのインスタンスmをデータベースにセーブ
+            // Tasksクラスのインスタンスtをデータベースにセーブ
             // エンティティマネージャー（EntityManager）のトランザクションをコミット
             // エンティティマネージャー（EntityManager）を閉じる
-            em.persist(m);
+            em.persist(t);
             em.getTransaction().commit();
             em.close();
 
