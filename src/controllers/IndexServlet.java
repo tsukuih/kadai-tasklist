@@ -40,10 +40,8 @@ public class IndexServlet extends HttpServlet {
         em.close();
 
         // データベースから取得したタスク一覧（tasks）をリクエストスコープにセットしindex.jspを呼び出す
-        // コメントの追加
         request.setAttribute("tasks", tasks);
 
-        // コメント
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
         rd.forward(request, response);
 
