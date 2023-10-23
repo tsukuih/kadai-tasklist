@@ -43,6 +43,7 @@ public class IndexServlet extends HttpServlet {
         // コメントの追加
         request.setAttribute("tasks", tasks);
 
+        // コメント
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
         rd.forward(request, response);
 
